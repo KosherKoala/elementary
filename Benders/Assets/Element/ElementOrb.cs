@@ -18,6 +18,7 @@ public class ElementOrb : MonoBehaviour {
 
     public GameObject psPrefab;
     public GameObject ps;
+    [HideInInspector] public bool fusible;
 
     // Use this for initialization
     void Start()
@@ -27,6 +28,7 @@ public class ElementOrb : MonoBehaviour {
         {
             textInstance.GetComponent<TextMesh>().text = element.eName + "\n Temperature: " + element.eTemperature;
             GetComponent<Renderer>().material.color = element.GetColor();
+            fusible = true;
         }
 
         if(psPrefab != null)
@@ -35,10 +37,12 @@ public class ElementOrb : MonoBehaviour {
         }
 	}
 
-    public void Initialize(Element e)
+    public void Initialize(Element e, FusionManager fm)
     {
         element = e;
+        fusionManager = fm;
         GetComponent<Renderer>().material.color = element.GetColor();
+        fusible = true;
     }
 
     private void Update()
@@ -57,14 +61,14 @@ public class ElementOrb : MonoBehaviour {
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter (Collider other)
     {
         GameObject otherOrb;
 
-        Debug.Log("Colliding" + collision.collider.gameObject.name);
-      
-        if(collision.collider.gameObject.CompareTag("ElementOrb")){
-            otherOrb = collision.collider.gameObject;
+        if (other.gameObject.CompareTag("ElementOrb") && fusible)
+        {
+            otherOrb = other.gameObject;
             fusionManager.GetComponent<FusionManager>().FuseElements(gameObject, otherOrb);
 
         }

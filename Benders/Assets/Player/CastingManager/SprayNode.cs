@@ -21,6 +21,7 @@ public class SprayNode : CastingNode {
     {
         if (!sprayAbilityTriggerable.IsTriggered())
         {
+            elementManager.SetFusibleLeft(false);
             sprayAbilityTriggerable.Trigger(elementManager.elementL);
         }
         Gesture gesture = gestureManager.GetGestureLeft();
@@ -29,6 +30,7 @@ public class SprayNode : CastingNode {
             if (sprayAbilityTriggerable.IsTriggered())
             {
                 sprayAbilityTriggerable.Cancel();
+                elementManager.SetFusibleLeft(true);
                 elementManager.elementL = null;
             }
             return head;
@@ -40,6 +42,7 @@ public class SprayNode : CastingNode {
     {
         if (!sprayAbilityTriggerable.IsTriggered())
         {
+            elementManager.SetFusibleRight(false);
             sprayAbilityTriggerable.Trigger(elementManager.elementR);
         }
         Gesture gesture = gestureManager.GetGestureRight();
@@ -48,6 +51,7 @@ public class SprayNode : CastingNode {
             if (sprayAbilityTriggerable.IsTriggered())
             {
                 sprayAbilityTriggerable.Cancel();
+                elementManager.SetFusibleRight(true);
                 elementManager.elementR = null;
             }
             return head;

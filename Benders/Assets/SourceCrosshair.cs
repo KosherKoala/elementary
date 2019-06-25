@@ -36,7 +36,6 @@ public class SourceCrosshair : MonoBehaviour
         }
         else if (cs == CrosshairState.Targeted)
         {
-            Debug.Log("Targeted");
             m_targetedCrosshair.SetActive(true);
             m_enabledCrosshair.SetActive(false);
         }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ElementOrb
+  - HandLeft
+  - HandRight
   layers:
   - Default
   - TransparentFX

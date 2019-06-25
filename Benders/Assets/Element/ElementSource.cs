@@ -29,11 +29,17 @@ public class ElementSource : MonoBehaviour {
 
    public Element Drain()
     {
+        Debug.Log("DRAIN");
         if(currentCount > 0)
         {
             currentCount--;
             return element;
         }
         return null;
+    }
+
+    public void ResetSourceCount()
+    {
+        currentCount = max;
     }
 }

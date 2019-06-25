@@ -20,7 +20,7 @@ public class ElementManager : MonoBehaviour {
 		if(elementL != null && orbL == null)
         {
             orbL = Instantiate(orbPrefab, grabberL.transform.Find("palm").transform);
-            orbL.Initialize(elementL);
+            orbL.Initialize(elementL, transform.parent.GetComponentInChildren<FusionManager>());
         }
 	}
 	
@@ -30,7 +30,7 @@ public class ElementManager : MonoBehaviour {
         if (elementL != null && orbL == null)
         {
             orbL = Instantiate(orbPrefab, grabberL.transform.Find("palm").transform);
-            orbL.Initialize(elementL);
+            orbL.Initialize(elementL, transform.parent.GetComponentInChildren<FusionManager>());
         }
 
         if (elementL == null && orbL != null)
@@ -42,7 +42,7 @@ public class ElementManager : MonoBehaviour {
         if (elementR != null && orbR == null)
         {
             orbR = Instantiate(orbPrefab, grabberR.transform.Find("palm").transform);
-            orbR.Initialize(elementR);
+            orbR.Initialize(elementR, transform.parent.GetComponentInChildren<FusionManager>());
         }
 
         if (elementR == null && orbR != null)
@@ -55,5 +55,25 @@ public class ElementManager : MonoBehaviour {
     private void CreateElementOrb()
     {
 
+    }
+
+    public void DestroyElements()
+    {
+        elementL = null;
+        elementR = null;
+        Destroy(orbR.gameObject);
+        Destroy(orbL.gameObject);
+    }
+
+    public void SetFusibleLeft(bool fusible)
+    {
+        if (orbL != null)
+            orbL.fusible = fusible;
+    }
+
+    public void SetFusibleRight(bool fusible)
+    {
+        if (orbR != null)
+            orbR.fusible = fusible;
     }
 }

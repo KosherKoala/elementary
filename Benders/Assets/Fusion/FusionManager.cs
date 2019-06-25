@@ -6,6 +6,7 @@ public class FusionManager : MonoBehaviour {
 
     public ElementOrb elementOrbPrefab;
     private List<int> ids = new List<int>();
+    private BenderGrabber parent;
 
 
     public void FuseElements(GameObject orb1, GameObject orb2)
@@ -27,17 +28,26 @@ public class FusionManager : MonoBehaviour {
 
             Debug.Log("New Temp: "  + fusionElement.eTemperature + " " + fusedTemp);
 
-            ElementOrb fusionOrb = Instantiate(elementOrbPrefab, orb1.transform.position, orb1.transform.rotation);
-            fusionOrb.Initialize(fusionElement);
+       /*     ElementOrb fusionOrb = Instantiate(elementOrbPrefab, parent.transform.Find("palm").transform);
+            fusionOrb.Initialize(fusionElement, this);*/
 
-            Destroy(orb1);
-            Destroy(orb2);
+            ElementManager elementManager = transform.parent.GetComponentInChildren<ElementManager>();
+            elementManager.DestroyElements();
+            if (parent.CompareTag("HandLeft"))
+            {
+                elementManager.elementL = fusionElement;
+            }
+            else if (parent.CompareTag("HandRight"))
+            {
+                elementManager.elementR = fusionElement;
+            }
 
         } else
         {
             // If not add them to list
             ids.Add(id1);
             ids.Add(id2);
+            parent = orb1.GetComponentInParent<BenderGrabber>();
         }
     }
 

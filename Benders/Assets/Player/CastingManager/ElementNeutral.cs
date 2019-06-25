@@ -19,16 +19,27 @@ public class ElementNeutral : CastingNode {
 
     public override CastingNode AttemptNextLeft()
     {
+        if (elementManager.elementL == null)
+        {
+            return head;
+        }
+
         Gesture gesture = gestureManager.GetGestureLeft();
         if (gesture.grip == Grip.FULL && gesture.zone == GZone.TORSO)
         {
             return selfSource;
         }
+        
+
         return this;
     }
 
     public override CastingNode AttemptNextRight()
     {
+        if (elementManager.elementR == null)
+        {
+            return head;
+        }
         Gesture gesture = gestureManager.GetGestureRight();
         if (gesture.grip == Grip.FULL && gesture.zone == GZone.TORSO)
         {

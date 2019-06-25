@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CastingNodeType{
+    ABILITY,
+    AIMING,
+    TRANSITION
+}
+
 public abstract class CastingNode {
     public string nName;
     protected CastingNode head;

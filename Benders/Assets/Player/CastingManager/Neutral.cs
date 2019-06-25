@@ -48,7 +48,6 @@ public class Neutral : CastingNode {
 
         if (source != null)
         {
-            Debug.Log("Source Found");
             currentSource = source;
             source.transform.Find("Crosshair").GetComponent<SourceCrosshair>().SetState(CrosshairState.Targeted);
             if (!drainSourceTriggerable.IsTriggered())
@@ -101,7 +100,6 @@ public class Neutral : CastingNode {
 
         if (source != null)
         {
-            Debug.Log("Source Found");
             currentSource = source;
             source.transform.Find("Crosshair").GetComponent<SourceCrosshair>().SetState(CrosshairState.Targeted);
             if (!drainSourceTriggerable.IsTriggered())

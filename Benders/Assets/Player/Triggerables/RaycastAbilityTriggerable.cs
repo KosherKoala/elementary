@@ -18,7 +18,7 @@ public class RaycastAbilityTriggerable : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit newHit;
+       /* RaycastHit newHit;
 
         if (triggered)
         {
@@ -34,7 +34,7 @@ public class RaycastAbilityTriggerable : MonoBehaviour
             {
                 hitObject = null;
             }
-        }
+        }*/
 
     }
 
@@ -45,7 +45,20 @@ public class RaycastAbilityTriggerable : MonoBehaviour
 
     public GameObject GetHitObject()
     {
-        return hitObject;
+        RaycastHit newHit;
+        if (triggered)
+        {
+            Ray ray = new Ray(emissionPoint.position, emissionPoint.forward);
+            if (Physics.Raycast(ray, out newHit))
+            {
+                line.SetPosition(0, emissionPoint.position);
+                line.SetPosition(1, newHit.point);
+
+
+                return newHit.transform.gameObject;
+            }
+        }
+        return null;
     }
 
     public bool isTriggered()
